@@ -31,25 +31,6 @@ The **Job Scheduling Assistant** is a web application designed for employers who
 - Real driving route visualization (OSRM + Leaflet)  
 - Dashboard analytics (jobs per employee, jobs per day)  
 
----
-
-## 🖼️ Screenshots
-
-> 📌 Add screenshots to a `/screenshots` folder in your repo
-
-### Home Page
-![Home](screenshots/home.png)
-
-### Jobs Page
-![Jobs](screenshots/jobs.png)
-
-### Route Map
-![Map](screenshots/map.png)
-
-### Dashboard
-![Dashboard](screenshots/dashboard.png)
-
----
 
 ## 🛠️ Tech Stack
 
