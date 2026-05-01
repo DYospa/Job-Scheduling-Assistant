@@ -1,0 +1,55 @@
+{% extends "base.html" %}
+{% block title %}Home{% endblock %}
+
+{% block content %}
+<div class="text-center mt-5">
+    <h1 class="mb-4">🚀 Job Scheduling Assistant</h1>
+    <p class="lead">
+        Manage employees, jobs, assignments, routing, and analytics in one place.
+    </p>
+
+    <div class="row justify-content-center mt-4 g-3">
+        <div class="col-md-3">
+            <a href="/employees" class="btn btn-primary btn-lg w-100">Employees</a>
+        </div>
+        <div class="col-md-3">
+            <a href="/jobs" class="btn btn-success btn-lg w-100">Jobs</a>
+        </div>
+        <div class="col-md-3">
+            <a href="/schedule" class="btn btn-warning btn-lg w-100">Schedule</a>
+        </div>
+        <div class="col-md-3">
+            <a href="/dashboard" class="btn btn-info btn-lg w-100">Dashboard</a>
+        </div>
+    </div>
+
+    <div class="row mt-5 g-4">
+        <div class="col-md-4">
+            <div class="card shadow-sm p-4 h-100">
+                <h4>👷 Employee Management</h4>
+                <p class="text-muted mb-0">
+                    Add employees, track roles, and include location data.
+                </p>
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <div class="card shadow-sm p-4 h-100">
+                <h4>🛠 Job Scheduling</h4>
+                <p class="text-muted mb-0">
+                    Create jobs and assign employees automatically or manually.
+                </p>
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <div class="card shadow-sm p-4 h-100">
+                <h4>🗺 Routing & Analytics</h4>
+                <p class="text-muted mb-0">
+                    Compare routes and visualize performance insights.
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,49 @@
+{% extends "base.html" %}
+{% block title %}Employees{% endblock %}
+
+{% block content %}
+<h2 class="mb-4">Employees</h2>
+
+<div class="card shadow-sm p-3 mb-4">
+    <h5>Add Employee</h5>
+    <form action="/add_employee" method="POST" class="row g-2">
+        <div class="col-md-3">
+            <input class="form-control" name="name" placeholder="Name" required>
+        </div>
+        <div class="col-md-3">
+            <input class="form-control" name="role" placeholder="Role" required>
+        </div>
+        <div class="col-md-4">
+            <input class="form-control" name="address" placeholder="Address">
+        </div>
+        <div class="col-md-2">
+            <button class="btn btn-primary w-100">Add</button>
+        </div>
+    </form>
+</div>
+
+<div class="card shadow-sm p-3">
+    {% if employees %}
+        <table class="table table-striped mb-0">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Name</th>
+                    <th>Role</th>
+                </tr>
+            </thead>
+            <tbody>
+            {% for emp in employees %}
+                <tr>
+                    <td>{{ emp.id }}</td>
+                    <td>{{ emp.name }}</td>
+                    <td>{{ emp.role }}</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    {% else %}
+        <p class="text-muted mb-0">No employees found.</p>
+    {% endif %}
+</div>
+{% endblock %}

@@ -1,0 +1,100 @@
+{% extends "base.html" %}
+{% block title %}Dashboard{% endblock %}
+
+{% block head_extra %}
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+{% endblock %}
+
+{% block content %}
+<div class="container mt-4">
+    <h2 class="mb-4">📊 Analytics Dashboard</h2>
+
+    <div class="row g-4 text-center mb-4">
+        <div class="col-md-4">
+            <div class="card shadow-sm p-3">
+                <h3>{{ employees }}</h3>
+                <p class="text-muted mb-0">Employees</p>
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <div class="card shadow-sm p-3">
+                <h3>{{ jobs }}</h3>
+                <p class="text-muted mb-0">Jobs</p>
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <div class="card shadow-sm p-3">
+                <h3>{{ assignments }}</h3>
+                <p class="text-muted mb-0">Assignments</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="row g-4">
+        <div class="col-md-6">
+            <div class="card shadow-sm p-3">
+                <h5 class="text-center mb-3">Jobs per Employee</h5>
+                <canvas id="chart1"></canvas>
+            </div>
+        </div>
+
+        <div class="col-md-6">
+            <div class="card shadow-sm p-3">
+                <h5 class="text-center mb-3">Jobs per Day</h5>
+                <canvas id="chart2"></canvas>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script id="jobs-per-employee-data" type="application/json">
+{{ jobs_per_employee | default([]) | tojson }}
+</script>
+<script id="jobs-per-day-data" type="application/json">
+{{ jobs_per_day | default([]) | tojson }}
+</script>
+<script>
+const empDataRaw = JSON.parse(document.getElementById("jobs-per-employee-data").textContent || '[]');
+const empLabels = empDataRaw.map(function(item) { return item[0]; });
+const empData = empDataRaw.map(function(item) { return item[1]; });
+
+new Chart(document.getElementById("chart1"), {
+    type: "bar",
+    data: {
+        labels: empLabels,
+        datasets: [{
+            label: "Jobs",
+            data: empData,
+            borderWidth: 1
+        }]
+    },
+    options: {
+        responsive: true,
+        plugins: {
+            legend: { display: false }
+        }
+    }
+});
+
+const dayDataRaw = JSON.parse(document.getElementById("jobs-per-day-data").textContent || '[]');
+const dayLabels = dayDataRaw.map(function(item) { return item[0]; });
+const dayData = dayDataRaw.map(function(item) { return item[1]; });
+
+new Chart(document.getElementById("chart2"), {
+    type: "line",
+    data: {
+        labels: dayLabels,
+        datasets: [{
+            label: "Jobs",
+            data: dayData,
+            tension: 0.3
+        }]
+    },
+    options: {
+        responsive: true
+    }
+});
+</script>
+{% endblock %}
